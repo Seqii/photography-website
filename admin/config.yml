@@ -1,9 +1,19 @@
-backend:
-  name: git-gateway
-  branch: main
+# admin/config.yml
 
-media_folder: "assets/images"   # folder where uploaded images go
+backend:
+  name: github
+  repo: Seqii/photography-website # replace with your GitHub username and repo
+  branch: main                      # your default branch
+  squash_merges: true               # optional, compress commits
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+
+media_folder: "myphotos/"   # folder where uploaded images are stored
 public_folder: "/assets/images" # URL used in HTML
+
+locale: "en"
 
 collections:
   - name: "gallery"
@@ -11,6 +21,7 @@ collections:
     folder: "content/gallery"
     create: true
     slug: "{{slug}}"
+    preview_path: "/gallery.html"   # optional, if you want preview on site
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Image", name: "image", widget: "image"}
